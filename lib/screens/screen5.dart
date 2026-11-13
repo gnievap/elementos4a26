@@ -13,6 +13,9 @@ class _Screen5State extends State<Screen5> {
   double _sliderValue = 0.0;
   TextEditingController _textController = TextEditingController();
   int radioSelected = 0;
+  bool _isChecked1 = false;
+  bool _isChecked2 = false;
+  bool _isChecked3 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +30,8 @@ class _Screen5State extends State<Screen5> {
           _entradaSwitch(),
           _entradaSlider(),
           _entradaRadio(),
+          _entradasCheck(),
+          ElevatedButton(onPressed: null, child: Text('Guardar')),
         ],
       ),
     );
@@ -150,5 +155,59 @@ class _Screen5State extends State<Screen5> {
         reactNative,
       ],
     );
+  }
+
+  Column _entradasCheck() {
+    final Text pregunta = Text('¿Qué usas para correr tus apps?');
+    final Row checks = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        // Checkbox 1
+        Transform.scale(
+          scale: 1.5,
+          child: Checkbox(
+            value: _isChecked1,
+            onChanged: (value) {
+              setState(() {
+                _isChecked1 = value!;
+                print('Checkbox 1: $_isChecked1');
+              });
+            },
+          ),
+        ),
+        Text('Emulador'),
+
+        // Checkbox 2
+        Transform.scale(
+          scale: 1.5,
+          child: Checkbox(
+            value: _isChecked2,
+            onChanged: (value) {
+              setState(() {
+                _isChecked2 = value!;
+                print('Checkbox 2: $_isChecked2');
+              });
+            },
+          ),
+        ),
+        Text('Smartphone'),
+
+        // Checkbox 3
+        Transform.scale(
+          scale: 1.5,
+          child: Checkbox(
+            value: _isChecked3,
+            onChanged: (value) {
+              setState(() {
+                _isChecked3 = value!;
+                print('Checkbox 3: $_isChecked3');
+              });
+            },
+          ),
+        ),
+        Text('Navegador Web'),
+      ],
+    );
+    return Column(children: [pregunta, checks]);
   }
 }
